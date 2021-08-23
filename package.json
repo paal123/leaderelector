@@ -1,0 +1,13 @@
+{
+  "name": "leaderelector",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "leaderelector.js",
+  "author": "Paul Eie",
+  "license": "ISC",
+  "dependencies": {
+    "async-mutex": "^0.3.1",
+    "express": "^4.17.1"
+  }
+}
