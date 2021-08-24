@@ -1,35 +1,36 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nodejs-deployment
+  name: leaderelector-deployment
   labels:
-    app: nodejs
+    app: leaderelector
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: nodejs
+      app: leaderelector
   template:
     metadata:
       labels:
-        app: nodejs
+        app: leaderelector
     spec:
       containers:
         - name: kubernetestest
-          image: paal12345/nodejs-starter:2.0
+          image: paal12345/leaderelector:4.11
           ports:
-          - containerPort: 3000
+          - containerPort: 3003
+          env:
+          - name: LEASE_TIME
+            value: "1"
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: nodejs-service
+  name: leaderelector-service
 spec:
   selector:
-    app: nodejs
-  type: LoadBalancer  
+    app: leaderelector
   ports:
     - protocol: TCP
-      port: 3000
-      targetPort: 3000
-      nodePort: 30000
+      port: 3003
+      targetPort: 3003
